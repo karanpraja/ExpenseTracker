@@ -16,9 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "predeploy": "npm run build",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [
