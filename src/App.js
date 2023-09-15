@@ -1,54 +1,52 @@
-import React,{useState} from "react";
-import Expenses from "./Components/Expenses/Expenses"
-import NewExpenses from "./Components/NewExpenses/NewExpenses";
+import React, { useState } from 'react';
 
-function App() {
-  const DUMMY_EXPENSES=[
-    {id:'e1',
-     title:'Book',
-    amount:23.4,
-  date:new Date(2022,4,4)},
-    {id:'e2',
-      title:'Mobile',
-     amount:18000,
-   date:new Date(2019,2,3)},
-    {id:'e3',
-      title:'Pen',
-     amount:5,
-   date:new Date(2020,7,11)},
-    {id:'e4',
-      title:'Cable',
-     amount:400,
-   date:new Date(2020,10,10)}
-  ]
-  const [expenses,setExpenses]=useState(DUMMY_EXPENSES)
-  // const [NewExpense,setNewExpense]=useState(false)
+import NewExpense from './Components/NewExpense/NewExpense';
+import Expenses from './Components/Expenses/Expenses';
 
-  const addNewExpenseData=(transferedData)=>{
-    setExpenses((prevExpenses)=>{
-      return [transferedData,...prevExpenses]
-    })
-  }
-  // const onCancelExpenseHandler=()=>{
-  //   setNewExpense(false)
-  // }
-  return (<div>
-    {/* {NewExpense?(
-      
-    ):(
-      <button onClick={()=>(setNewExpense(true))}>
-Add New Expense Item
-      </button>
-    )} */}
-    <NewExpenses  transferDataToApp={addNewExpenseData} ></NewExpenses>
+const DUMMY_EXPENSES = [
+  {
+    id: 'e1',
+    title: 'Toilet Paper',
+    amount: 94.12,
+    date: new Date(2020, 7, 14),
+  },
+  { id: 'e2', title: 'New TV', amount: 799.49, date: new Date(2021, 2, 12) },
+  {
+    id: 'e3',
+    title: 'Car Insurance',
+    amount: 294.67,
+    date: new Date(2021, 2, 28),
+  },
+  {
+    id: 'e4',
+    title: 'New Desk (Wooden)',
+    amount: 450,
+    date: new Date(2021, 5, 12),
+  },
+];
 
-          
-          <Expenses items={expenses}/>
+const App = () => {
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
 
-          </div>);
+  const addExpenseHandler = (expense) => {
+    setExpenses((prevExpenses) => {
+      return [expense, ...prevExpenses];
+    });
+  };
 
-}
+  // return React.createElement(
+  //   'div',
+  //   {},
+  //   React.createElement('h2', {}, "Let's get started!"),
+  //   React.createElement(Expenses, { items: expenses })
+  // );
+
+  return (
+    <div>
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses items={expenses} />
+    </div>
+  );
+};
 
 export default App;
-
-
